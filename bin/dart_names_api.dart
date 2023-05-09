@@ -92,6 +92,7 @@ Future<void> sendNames(String jsonDB, HttpClient http, String url) async {
     ..headers.contentType = ContentType.json
     ..write(jsonDB);
   final response = await request.close();
+  print(response.statusCode);
   await for (var contents in response.transform(utf8.decoder)) {
     print(contents);
   }
@@ -99,7 +100,7 @@ Future<void> sendNames(String jsonDB, HttpClient http, String url) async {
 
 void main() async {
   final httpClient = HttpClient();
-  const url = 'https://api.genderize.io?name=petro';
+  const url = 'https://api.genderize.io?name=oleg';
 
   final request = await httpClient.getUrl(Uri.parse(url));
   final response = await request.close();
